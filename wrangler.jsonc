@@ -1,7 +1,5 @@
 {
   "$schema": "node_modules/wrangler/schemas/config/v4.schema.json",
   "name": "metrics-iframes",
-  "pages": {
-    "build_output_dir": "dist"
-  }
+  "pages_build_output_dir": "dist"
 }
