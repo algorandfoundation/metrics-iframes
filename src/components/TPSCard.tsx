@@ -10,18 +10,18 @@ export function TPSCard() {
   const averageRoundTime = useAverageRoundTime();
   const front = (
     <div className="flex flex-col justify-center h-full">
-      <p className="text-[#7c6a94] text-sm uppercase tracking-wider mb-2">
+      <p className="text-card-label text-sm uppercase tracking-wider mb-2">
         Transactions Per Second
       </p>
       {tps !== null ? (
         <div className="flex items-baseline gap-2">
-          <span className="text-4xl font-bold text-[#3d2066]">
+          <span className="text-4xl font-bold text-card-value">
             {formatTPS(tps)}
           </span>
-          <span className="text-[#7c6a94] text-lg">tx/s</span>
+          <span className="text-card-label text-lg">tx/s</span>
         </div>
       ) : (
-        <div className="h-10 w-24 bg-[#d4c8e0] rounded animate-pulse" />
+        <div className="h-10 w-24 bg-card-border rounded animate-pulse" />
       )}
     </div>
   );
@@ -33,7 +33,7 @@ export function TPSCard() {
 
   const back = (
     <div className="flex flex-col justify-center h-full">
-      <p className="text-[#5c4a78] text-sm leading-relaxed">
+      <p className="text-card-body text-sm leading-relaxed">
         Transactions per second is calculated live over the past 1,000 rounds
         {windowMinutes !== null ? ` (~${windowMinutes} minutes)` : ""} on the
         Algorand blockchain by dividing the total transaction count in the window

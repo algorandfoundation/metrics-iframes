@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useState, useRef, useEffect, type ReactNode } from "react";
 
 interface FlipCardProps {
   front: ReactNode;
@@ -8,19 +8,36 @@ interface FlipCardProps {
 
 export function FlipCard({ front, back, className = "" }: FlipCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const frontRef = useRef<HTMLDivElement>(null);
+  const backRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState<number>(120);
+
+  useEffect(() => {
+    const el = isFlipped ? backRef.current : frontRef.current;
+    if (el) setHeight(Math.max(120, el.scrollHeight));
+  }, [isFlipped]);
 
   return (
-    <div className={`h-[120px] ${className}`} style={{ perspective: "1000px" }}>
+    <div
+      className={className}
+      style={{
+        perspective: "1000px",
+        height,
+        transition: "height 300ms ease",
+      }}
+    >
       <div
-        className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${
-          isFlipped ? "[transform:rotateY(180deg)]" : ""
-        }`}
+        className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d]"
+        style={{ transform: isFlipped ? "rotateX(180deg)" : "rotateX(0deg)" }}
       >
         {/* Front face */}
-        <div className="absolute inset-0 [backface-visibility:hidden] bg-[#e8e0f0] rounded-xl p-6 border border-[#d4c8e0] overflow-hidden">
+        <div
+          ref={frontRef}
+          className="absolute inset-x-0 top-0 [backface-visibility:hidden] bg-card-bg rounded-xl p-6 border border-card-border overflow-hidden"
+        >
           <button
             onClick={() => setIsFlipped(true)}
-            className="absolute top-3 right-3 w-7 h-7 rounded-full border border-[#b8a8cc] flex items-center justify-center text-sm font-serif italic text-[#7c6a94] hover:text-[#4a3366] hover:border-[#7c6a94] transition-colors"
+            className="absolute top-3 right-3 w-7 h-7 rounded-full border border-card-btn-border flex items-center justify-center text-sm font-serif italic text-card-label hover:text-card-btn-hover hover:border-card-label transition-colors"
             aria-label="Show info"
           >
             i
@@ -29,10 +46,13 @@ export function FlipCard({ front, back, className = "" }: FlipCardProps) {
         </div>
 
         {/* Back face */}
-        <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] bg-[#e8e0f0] rounded-xl p-6 border border-[#d4c8e0] overflow-hidden">
+        <div
+          ref={backRef}
+          className="absolute inset-x-0 top-0 [backface-visibility:hidden] [transform:rotateX(180deg)] bg-card-bg rounded-xl p-6 pr-12 border border-card-border"
+        >
           <button
             onClick={() => setIsFlipped(false)}
-            className="absolute top-3 right-3 w-7 h-7 rounded-full border border-[#b8a8cc] flex items-center justify-center text-sm text-[#7c6a94] hover:text-[#4a3366] hover:border-[#7c6a94] transition-colors"
+            className="absolute top-3 right-3 w-7 h-7 rounded-full border border-card-btn-border flex items-center justify-center text-sm text-card-label hover:text-card-btn-hover hover:border-card-label transition-colors"
             aria-label="Close info"
           >
             &times;
