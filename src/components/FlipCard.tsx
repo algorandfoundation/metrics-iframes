@@ -48,7 +48,7 @@ export function FlipCard({ front, back, className = "" }: FlipCardProps) {
         {/* Back face */}
         <div
           ref={backRef}
-          className="absolute inset-x-0 top-0 [backface-visibility:hidden] [transform:rotateX(180deg)] bg-card-bg rounded-xl p-6 pr-12 border border-card-border"
+          className="absolute inset-x-0 top-0 min-h-[120px] [backface-visibility:hidden] [transform:rotateX(180deg)] bg-card-bg rounded-xl p-6 pr-12 border border-card-border"
         >
           <button
             onClick={() => setIsFlipped(false)}

@@ -4,9 +4,17 @@ iframes for real-time metrics for algorand.co
 
 ## Routes
 
-### /art-tps/
+### /home
 
-Shows Average round time + TPS over past 1000 blocks. Trails the chain and automatically updates.
+Average round time, circulating supply, network downtime, forks.
+
+### /art-tps
+
+Average round time, TPS, total transactions, online stake. Trails the chain and updates live.
+
+### /stake
+
+Mainnet nodes, online stake, staking rewards rate, online accounts, online accounts over 30K.
 
 ## Styling
 

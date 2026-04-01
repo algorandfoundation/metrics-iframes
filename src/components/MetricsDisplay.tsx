@@ -1,15 +1,15 @@
 import { AverageRoundTimeCard } from "./AverageRoundTimeCard";
 import { TPSCard } from "./TPSCard";
+import { TotalTransactionsCard } from "./TotalTransactionsCard";
+import { OnlineStakeCard } from "./OnlineStakeCard";
 
 export function MetricsDisplay() {
   return (
-    <div className="flex flex-col md:flex-row gap-4 p-8 items-stretch">
-      <div className="flex-1">
-        <AverageRoundTimeCard />
-      </div>
-      <div className="flex-1">
-        <TPSCard />
-      </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-4 p-8">
+      <AverageRoundTimeCard />
+      <TPSCard />
+      <TotalTransactionsCard />
+      <OnlineStakeCard />
     </div>
   );
 }
