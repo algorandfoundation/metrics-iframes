@@ -5,7 +5,7 @@ import { ForksCard } from "./ForksCard";
 
 export function HomeDisplay() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       <AverageRoundTimeCard />
       <CirculatingSupplyCard />
       <NetworkDowntimeCard />
